@@ -16,10 +16,14 @@ public class Client extends JFrame implements ActionListener, KeyListener {
     private final JTextField textMessage;
     private final JButton buttonSend;
     private final JButton buttonQuit;
-    private Socket basicSocket, specialSocket;
-    private OutputStream basicOutputStream, specialOutputStream;
-    private Writer basicOutputStreamWriter, specialOutputStreamWriter;
-    private BufferedWriter basicBufferedWriter, specialBufferedWriter;
+    private Socket basicSocket;
+    private Socket specialSocket;
+    private OutputStream basicOutputStream;
+    private OutputStream specialOutputStream;
+    private Writer basicOutputStreamWriter;
+    private Writer specialOutputStreamWriter;
+    private BufferedWriter basicBufferedWriter;
+    private BufferedWriter specialBufferedWriter;
 
     public Client() {
 
@@ -95,13 +99,13 @@ public class Client extends JFrame implements ActionListener, KeyListener {
 
     public void connect() throws IOException{
 
-        basicSocket = new Socket("localhost", 12345);
+        basicSocket = new Socket("localhost", 10000);
         basicOutputStream = basicSocket.getOutputStream();
         basicOutputStreamWriter = new OutputStreamWriter(basicOutputStream);
         basicBufferedWriter = new BufferedWriter(basicOutputStreamWriter);
         basicBufferedWriter.flush();
 
-        specialSocket = new Socket("localhost", 54321);
+        specialSocket = new Socket("localhost", 20000);
         specialOutputStream = specialSocket.getOutputStream();
         specialOutputStreamWriter = new OutputStreamWriter(specialOutputStream);
         specialBufferedWriter = new BufferedWriter(specialOutputStreamWriter);
@@ -171,7 +175,7 @@ public class Client extends JFrame implements ActionListener, KeyListener {
             }
 
             if (specialBufferedReader.ready()) {
-                message = basicBufferedReader.readLine();
+                message = specialBufferedReader.readLine();
 
                 if (message.equalsIgnoreCase("sair")) {
 

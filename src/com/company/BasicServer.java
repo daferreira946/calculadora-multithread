@@ -28,9 +28,10 @@ public class BasicServer extends Thread {
     public static void main(String []args) {
 
         try{
-            ServerSocket serverSocket = new ServerSocket(12345);
+            int port = 10000;
+            ServerSocket serverSocket = new ServerSocket(port);
             JOptionPane.showMessageDialog(null,"Servidor ativo na porta: "+
-                    12345);
+                    port);
 
             while(true){
                 System.out.println("Aguardando conexão...");
@@ -69,7 +70,7 @@ public class BasicServer extends Thread {
         }
     }
 
-    public String send(BufferedWriter bufferedWriter, String expression) throws  IOException
+    private String send(BufferedWriter bufferedWriter, String expression) throws  IOException
     {
         String result;
 
@@ -88,7 +89,7 @@ public class BasicServer extends Thread {
         return result;
     }
 
-    public String calc(String expression) throws ArithmeticException
+    private String calc(String expression) throws ArithmeticException
     {
         List<String> operations = Arrays.asList(this.operations);
         if (!expression.contains(" ")) {
