@@ -37,7 +37,7 @@ public class SpecialServer extends Thread {
                 System.out.println("Aguardando conexão...");
                 Socket connection = serverSocket.accept();
                 System.out.println("Cliente conectado...");
-                Thread thread = new BasicServer(connection);
+                Thread thread = new SpecialServer(connection);
                 thread.start();
             }
 
@@ -109,7 +109,7 @@ public class SpecialServer extends Thread {
         double numberOne = Double.parseDouble(elements[0]);
         String operation = elements[1];
         double numberTwo = Double.parseDouble(elements[2]);
-        System.out.println(elements[0] + " a " + elements[1] + " " + elements[2]);
+        System.out.println(elements[0] + " " + elements[1] + " " + elements[2]);
         String result = "";
 
         if (!(operations.contains(operation))) {
@@ -139,10 +139,25 @@ public class SpecialServer extends Thread {
     }
 
     private double root(double numberOne, double numberTwo) {
-        return Math.round(Math.pow(numberTwo, 1/numberOne));
+        if (numberTwo < Double.parseDouble("0")) {
+            this.error = "Resultante é número imaginário\r\n";
+            return 0;
+        }
+
+        if (numberOne <= Double.parseDouble("0")) {
+            this.error = "Índice não pode ser 0 ou negativo\r\n";
+            return 0;
+        }
+
+        return Math.pow(numberTwo, 1/numberOne);
     }
 
     private double elevation(double numberOne, double numberTwo) {
+        if (numberTwo < Double.parseDouble("0")) {
+            this.error = "Expoente não pode ser negativo\r\n";
+            return 0;
+        }
+
         return Math.pow(numberOne, numberTwo);
     }
 

@@ -115,12 +115,12 @@ public class Client extends JFrame implements ActionListener, KeyListener {
 
     private void distributor(String expression) throws IOException {
 
-        if (expression.contains("+") | expression.contains("-") | expression.contains("/") | expression.contains("*")) {
-            this.text.append("Enviando para servidor de operações básicas:\r\n");
-            sendBasic(expression);
-        } else if (expression.contains("%") | expression.contains("^") | expression.contains("#")) {
+        if (expression.contains("%") | expression.contains("^") | expression.contains("#")) {
             this.text.append("Enviando para servidor de operações especiais:\r\n");
             sendSpecial(expression);
+        } else if (expression.contains("+") | expression.contains("-") | expression.contains("/") | expression.contains("*")){
+            this.text.append("Enviando para servidor de operações básicas:\r\n");
+            sendBasic(expression);
         }
 
     }
@@ -128,7 +128,6 @@ public class Client extends JFrame implements ActionListener, KeyListener {
     public void sendBasic(String message) throws IOException {
 
         basicBufferedWriter.write(message + "\r\n");
-        text.append(message + "\r\n");
 
         basicBufferedWriter.flush();
         textMessage.setText("");
@@ -138,7 +137,6 @@ public class Client extends JFrame implements ActionListener, KeyListener {
     public void sendSpecial(String message) throws IOException {
 
         specialBufferedWriter.write(message + "\r\n");
-        text.append(message + "\r\n");
 
         specialBufferedWriter.flush();
         textMessage.setText("");
