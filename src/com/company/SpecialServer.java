@@ -177,6 +177,10 @@ public class SpecialServer extends Thread {
     }
 
     private double perCent(double numberOne, double numberTwo) {
+        if (numberOne < Double.parseDouble("0")) {
+            this.error = "Expoente não pode ser negativo\r\n";
+            return 0;
+        }
         return (numberTwo * numberOne)/100;
     }
 

@@ -31,6 +31,27 @@
     * Sempre separado por espaços: N1 op N2
     * Usar formato de decimal com . (Ex.: 2.58)
     * Só uma operação por vez
+    
+  ## Request e Response
+  
+  ### Request:
+  
+  * É enviado ao servidor no formato: "N1 OP N2";
+    * N1 é o número 1
+    * OP é o operador
+    * N2 é o número 2
+  
+  * Patterns regex que garante formatos->01, 1.0, 10.01:
+    * N1 = ^\d+(\.\d+)?
+    * N2 = ^\d+(\.\d+)?
+    
+  ### Response:
+  
+  * Os servidores respondem com padrão: "expression \r\n result";
+    * expression é a expressão enviada pelo cliente
+    * \r - carriage return
+    * \n - new line
+    * result é o resultado da expressão tratado pelo servidor
 
   ## Adendos
 
