@@ -106,9 +106,24 @@ public class SpecialServer extends Thread {
             return "";
         }
 
+        if (!elements[0].matches("^\\d+(\\.\\d+)?")) {
+            this.error = "O primeiro elemento não é um número do tipo real\r\n";
+            return "";
+        }
         double numberOne = Double.parseDouble(elements[0]);
+
+        if (!operations.contains(elements[1])) {
+            this.error = "Operador inválido\r\n";
+            return "";
+        }
         String operation = elements[1];
+
+        if (!elements[2].matches("^\\d+(\\.\\d+)?")) {
+            this.error = "O segundo elemento não é um número do tipo real\r\n";
+            return "";
+        }
         double numberTwo = Double.parseDouble(elements[2]);
+
         System.out.println(elements[0] + " " + elements[1] + " " + elements[2]);
         String result = "";
 

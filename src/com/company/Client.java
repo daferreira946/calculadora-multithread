@@ -45,6 +45,7 @@ public class Client extends JFrame implements ActionListener, KeyListener {
                 Para operações básicas digite: N1 +|-|*|/ N2
                 Para operações especiais digite: N1 %|^|# N2
                 Sempre separado por espaços: N1 op N2
+                Usar formato de decimal com . (Ex.: 2.58)
                 Só uma operação por vez
                 --------------------------------------------
                 Operações disponíveis:
@@ -121,6 +122,9 @@ public class Client extends JFrame implements ActionListener, KeyListener {
         } else if (expression.contains("+") | expression.contains("-") | expression.contains("/") | expression.contains("*")){
             this.text.append("Enviando para servidor de operações básicas:\r\n");
             sendBasic(expression);
+        } else {
+            text.append("Erro na sintáxe, operador inválido\r\n");
+            textMessage.setText("");
         }
 
     }

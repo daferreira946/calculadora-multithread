@@ -29,6 +29,7 @@
     * Para operações básicas digite: N1 +|-|*|/ N2
     * Para operações especiais digite: N1 %|^|# N2
     * Sempre separado por espaços: N1 op N2
+    * Usar formato de decimal com . (Ex.: 2.58)
     * Só uma operação por vez
 
   ## Adendos
